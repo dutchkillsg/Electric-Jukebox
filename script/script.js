@@ -48,28 +48,29 @@ Jukebox.prototype.stop = function() {
   this.jamz[index].pause();
   this.jamz[index].currentTime = 0;
 }
-
 Jukebox.prototype.next = function() {
-  this.jamz[index].pause();
-  index++
-  this.jamz[index].currentTime = 0;
-  this.jamz[index].play();
-  if (index == this.jamz.length) {
+    this.jamz[index].pause();
+    if (index == this.jamz.length-1) {
+        index=0;
+    } else {
+        index++;
+    }
     this.jamz[index].currentTime = 0;
-    this.jamz[index].play();
-  }
+    this.jamz[index].play();  
 }
 
 Jukebox.prototype.back = function() {
-  this.jamz[index].pause();
-  index--
-  this.jamz[index].currentTime = 0;
-  this.jamz[index].play();
-  if (index == 0) {
+    this.jamz[index].pause();
+    if (index == 0) {
+        // rotate back from first track to last track
+        index = this.jamz.length-1;  
+    } else {
+        index--;
+    }
     this.jamz[index].currentTime = 0;
-    this.jamz[index].play();
-  }
+    this.jamz[index].play();  
 }
+
 
 
 //add event listeners to the the buttons I pulled earlier.
